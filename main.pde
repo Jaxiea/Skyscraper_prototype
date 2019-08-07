@@ -32,15 +32,15 @@ void draw(){
     for (int i = 0; i < col; i+=2){
       
       float p = map(noise(m, v), 0, 1, 0, 300); 
-      if ( p > 150){
+      if ( p > 150){                             //Tall, torquise structures.
         terrain[i][j] = p;
         terrain[i+1][j] = p;
       }
-      else if ( p > 20 && p < 80){
+      else if ( p > 20 && p < 80){               //Short black ones
         terrain[i][j] = p;
         terrain[i+1][j] = p;
       }
-      else
+      else                                       //ignore everything else
       {
          terrain[i][j] = 0;
          terrain[i+1][j] = 0;
@@ -57,7 +57,7 @@ void draw(){
   
   //////////////////////////////
   //Drawing the actual mesh
-   translate(width/2, height/2);
+   translate(width/2, height/2);                          //rotate the view by 90 degrees to see the structures from the side. And roughly centering.
    rotateZ(radians(90));
    translate(-width/2, -height, -900);
     rotateY(-PI/(2.6));
@@ -77,7 +77,7 @@ void draw(){
        }
        else{
          fill(0);
-       }
+       }                                      //drawing a protruding "block" 
       vertex(j * scale, i * scale, 0);
       vertex(j * scale, (i+1) * scale, 0);
       
@@ -95,9 +95,9 @@ void draw(){
       
       }
       
-      else if(terrain[j][i] > 10 && terrain[j+1][i] > 10 && terrain[j][i+1] < 10) {
+      else if(terrain[j][i] > 10 && terrain[j+1][i] > 10 && terrain[j][i+1] < 10) {          //preventing anything that pops up that's not 90 degrees straight up or down
         fill(#FFF3C6);
-        vertex(j * scale, i * scale, 0);
+        vertex(j * scale, i * scale, 0);   
       vertex(j * scale, (i+1) * scale, 0);
       vertex((j+1) * scale, i * scale, 0);
       vertex((j+1) * scale, (i+1) * scale, 0);
